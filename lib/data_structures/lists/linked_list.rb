@@ -23,25 +23,15 @@ module DataStructures
 
     alias :<< :insert
 
+
     def remove(node)
       return nil unless node
       return nil unless @count > 0
 
       if node == @head
-        @head = @head.next_node
-
-        if @count == 1
-          @tail = nil
-        end
+        remove_head
       else
-        temporary_node = @head
-
-        while temporary_node && temporary_node.next_node != node
-          temporary_node = temporary_node.next_node
-        end
-
-        temporary_node.next_node = node.next_node if temporary_node
-        @tail = temporary_node if temporary_node && temporary_node.next_node.nil?
+        find_and_remove node
       end
 
       @count -= 1
@@ -91,6 +81,32 @@ module DataStructures
       end
 
       values.to_s
+    end
+
+    private
+
+    def remove_head
+      @head = @head.next_node
+
+      if @count == 1
+        @tail = nil
+      end
+    end
+
+    def find_and_remove(node)
+      target_node = @head
+
+      while target_node && target_node.next_node != node
+        target_node = target_node.next_node
+      end
+
+      if target_node
+        target_node.next_node = node.next_node
+
+        if target_node.next_node.nil?
+          @tail = target_node
+        end
+      end
     end
   end
 end
