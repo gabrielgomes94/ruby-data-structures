@@ -90,9 +90,5 @@ module DataStructures
 
       values.to_s
     end
-
-    def new_method
-      dsa
-    end
   end
 end
