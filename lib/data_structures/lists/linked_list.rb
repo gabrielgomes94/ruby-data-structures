@@ -1,5 +1,9 @@
+require 'data_structures/helpers/type_checker'
+
 module DataStructures
   class LinkedList
+    include TypeChecker
+
     attr_accessor :head
     attr_accessor :tail
     attr_accessor :count
@@ -11,6 +15,8 @@ module DataStructures
     end
 
     def insert(node)
+      verify node, Node
+
       if @head.nil?
         @head = node
       else

@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'data_structures/lists/linked_list'
 require 'data_structures/nodes/node'
+require 'data_structures/nodes/bi_direction_node'
 
 class LinkedListTest < Minitest::Test
   def setup
@@ -41,6 +42,12 @@ class LinkedListTest < Minitest::Test
     assert_equal @linked_list.head.next_node, second_node
     assert_equal @linked_list.tail, second_node
     assert_equal @linked_list.count, 2
+  end
+
+  def test_should_not_insert_when_node_is_not_given
+    assert_raises(RuntimeError, 'Argument error: node must be Node') do
+      @linked_list.insert DataStructures::BiDirectionNode.new(20)
+    end
   end
 
   def test_should_remove_node
