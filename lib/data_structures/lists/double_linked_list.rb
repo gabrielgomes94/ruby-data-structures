@@ -1,9 +1,12 @@
 require 'data_structures/lists/linked_list'
+require 'data_structures/helpers/type_checker'
 
 module DataStructures
   class DoubleLinkedList < LinkedList
+    include TypeChecker
+
     def insert(node)
-      raise 'Argument error: node must be BiDirectionNode' unless node.kind_of?(BiDirectionNode)
+      verify node, BiDirectionNode
 
       unless @head.nil?
         node.previous_node = @tail
