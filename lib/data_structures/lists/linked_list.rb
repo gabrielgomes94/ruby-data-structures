@@ -21,6 +21,8 @@ module DataStructures
       @count += 1
     end
 
+    alias :<< :insert
+
     def remove(node)
       return nil unless node
       return nil unless @count > 0

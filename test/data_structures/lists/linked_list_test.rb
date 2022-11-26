@@ -1,14 +1,10 @@
 require 'minitest/autorun'
-require 'data_structures/linked_list'
-require 'data_structures/node'
+require 'data_structures/lists/linked_list'
+require 'data_structures/nodes/node'
 
 class LinkedListTest < Minitest::Test
   def setup
     @linked_list = DataStructures::LinkedList.new
-  end
-
-  def test
-    skip 'Not implemented'
   end
 
   def test_should_initialize_linked_list
@@ -27,18 +23,24 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_should_insert_node_when_linked_list_already_have_nodes
-    # Arrange
     @linked_list.insert head = DataStructures::Node.new(12)
     @linked_list.insert second_node = DataStructures::Node.new(12)
-
-    # Act
     @linked_list.insert third_node = DataStructures::Node.new(20)
 
-    # Assert
     assert_equal @linked_list.head, head
     assert_equal @linked_list.head.next_node, second_node
     assert_equal @linked_list.tail, third_node
     assert_equal @linked_list.count, 3
+  end
+
+  def test_should_insert_using_append_operator
+    @linked_list << head = DataStructures::Node.new(12)
+    @linked_list << second_node = DataStructures::Node.new(12)
+
+    assert_equal @linked_list.head, head
+    assert_equal @linked_list.head.next_node, second_node
+    assert_equal @linked_list.tail, second_node
+    assert_equal @linked_list.count, 2
   end
 
   def test_should_remove_node
