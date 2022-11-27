@@ -15,7 +15,7 @@ module DataStructures
     end
 
     def insert(node)
-      verify node, Node
+      # verify node, Node
 
       if @head.nil?
         @head = node
