@@ -18,7 +18,7 @@ module DataStructures
     end
 
     def print
-      print_rec @root, 0
+      print_recursive @root, 0
     end
 
     private
@@ -107,15 +107,15 @@ module DataStructures
       rotate_left(node)
     end
 
-    def print_rec(node, indent)
+    def print_recursive(node, indent)
       unless node
         puts "x".rjust(indent * 4, " ")
         return
       end
 
       puts_key node, indent
-      print_rec node.left_node, indent + 1
-      print_rec node.right_node, indent + 1
+      print_recursive node.left_node, indent + 1
+      print_recursive node.right_node, indent + 1
     end
 
     def puts_key(node, indent)
